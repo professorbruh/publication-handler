@@ -46,7 +46,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+    <script src="js/valid.js"></script>
 
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -61,13 +61,19 @@
     <!-- select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <style type="text/css">
-        .reqError {
-            color: #ff0000; /*Red Color*/
-            font-weight: bold;
-        }
-    </style>
 
+    <script>
+        const email = document.getElementById("email1");
+    
+    email.addEventListener("input", function (event) {
+      if (email.validity.typeMismatch) {
+        email.setCustomValidity("I am expecting an e-mail address!");
+        alert("I am expecting an e-mail address!");
+      } else {
+        email.setCustomValidity("");
+      }
+    });
+    </script>
 </head>
 
 <body>
@@ -215,13 +221,12 @@
                                 <header class="card-header" style="font-size: larger; text-align: center;"> Mansucript Submission Form </header>
                                 <div class="card">
                                     <div class="card-body">
-                                        <form class="form-horizontal form-material" id="theForm" onsubmit="return checkReqFields()">
+                                        <form class="form-horizontal form-material" id="myform" action="abc.html">
                                             <div class="form-group mb-4">
                                                 <label class="col-md-12 p-0">Title</label>
                                                 <div class="col-md-12 border-bottom p-0">
                                                     <input type="text" id="title" placeholder="Your title"
-                                                        class="form-control p-0 border-0" required>
-                                                        <span id="reqTxtName" class="reqError"></span><br /> </div>
+                                                        class="form-control p-0 border-0" required> </div>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label class="col-md-12 p-0">Author 1</label>
@@ -229,7 +234,7 @@
                                                     <input type="text" id="email1" placeholder="Email id"
                                                         class="form-control p-0 border-0" required=""> </div>
                                                 <div class="col-md-12 border-bottom p-0">
-                                                    <input type="text" placeholder="Name"
+                                                    <input type="text" id="name1" placeholder="Name"
                                                         class="form-control p-0 border-0" required=""> </div>
                                             </div>
                                             <div class="form-group mb-4">
@@ -263,7 +268,7 @@
                                                 <label class="col-md-12 p-0">Institution Name</label>
                                                 <div class="col-md-12 border-bottom p-0">
                                                     <input type="text" id="institution" placeholder="Your institution name"
-                                                        class="form-control p-0 border-0" required=""> </div>
+                                                        class="form-control p-0 border-0" required> </div>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label class="col-md-8 p-0">Domain</label>
@@ -285,22 +290,22 @@
                                             <div class="form-group mb-4">
                                                 <label class="col-md-12 p-0">Manuscript Upload</label>
                                                 <div class="col-md-12 border-bottom p-0">
-                                                    <input type="file" placeholder="Upload your Manuscript"
-                                                        class="form-control p-0 border-0">
+                                                    <input type="file" placeholder="Upload your Manuscript" accept=".pdf" id="manuscript"
+                                                        class="form-control p-0 border-0" required>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label class="col-md-12 p-0">Plagiarism check report</label>
                                                 <div class="col-md-12 border-bottom p-0">
-                                                    <input type="file" placeholder="Upload your report"
-                                                        class="form-control p-0 border-0">
+                                                    <input type="file" placeholder="Upload your report" accept=".jpg,.png,.pdf" id="report"
+                                                        class="form-control p-0 border-0" required>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label class="col-md-12 p-0">Plagiarism percentage</label>
                                                 <div class="col-md-12 border-bottom p-0">
                                                     <input type="number" id="Plagiarismpercent" placeholder="Your Plagiarism percentage"
-                                                        class="form-control p-0 border-0"> </div>
+                                                        class="form-control p-0 border-0" required> </div>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -377,26 +382,6 @@
     
             }
         }
-    
-
-            //function to check validation (Required field)
-            function checkReqFields() {
-                var returnValue;
-                var name = document.getElementById("title").value;
-                var address = document.getElementById("txtAddress").value;
-
-                returnValue = true;
-                if (name.trim() == "") {
-                    document.getElementById("reqTxtName").innerHTML = "* Name is required.";
-                    returnValue = false;
-                }
-                if (address.trim() == "") {
-                    document.getElementById("reqTxtAddress").innerHTML = "* Address is required.";
-                    returnValue = false;
-                }
-                return returnValue;
-            }
-
     </script>
     <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
