@@ -8,19 +8,19 @@
             <div class="form-container sign-up-container">
                 <form name="myform" action="../php/register.php" method="POST">
                     <h1>Create Account</h1>
-                    <input type="text" name="name" placeholder="Name" required="" />
-                    <input type="email" name="email" placeholder="Email" required="" />
-                    <input type="text" name="mno" placeholder="Mobile Number" required="" />
-                    <input type="password" name="pass1" placeholder="Password" required="" />
-                    <input type="password" name="pass2" placeholder="Confirm Password" required="" />
+                    <input type="text" name="name" id="rname" placeholder="Name" required="" />
+                    <input type="email" name="email" id="remail" placeholder="Email" required="" />
+                    <input type="text" name="mno" id="rno" placeholder="Mobile Number" required="" />
+                    <input type="password" name="pass1" id="p1" placeholder="Password" required="" />
+                    <input type="password" name="pass2" id="p2" placeholder="Confirm Password" required="" />
                     <button>Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form name="myform1" action="../php/login.php" method="POST">
                     <h1>Sign in</h1>
-                    <input type="text" name="user" placeholder="Username" required="" />
-                    <input type="password" name="pass" placeholder="Password" required="" />
+                    <input type="text" name="user" id="uname" placeholder="Username" required="" />
+                    <input type="password" name="pass" id="upass" placeholder="Password" required="" />
                     <button>Sign In</button>
                 </form>
             </div>
@@ -51,6 +51,73 @@
 
             signInButton.addEventListener('click', () => {
             container.classList.remove("right-panel-active");
+            });
+
+            const uname = document.getElementById("uname");
+            const upass = document.getElementById("upass");
+            const rname = document.getElementById("rname");
+            const remail = document.getElementById("remail");
+            const rno = document.getElementById("rno");
+            const p1 = document.getElementById("p1");
+            const p2 = document.getElementById("p2");
+
+            uname.addEventListener("input", function (event) {
+            if (uname.validity.valueMissing) {
+                uname.setCustomValidity("Please fill out this field");
+            } else {
+                uname.setCustomValidity("");
+                }
+            });
+
+            upass.addEventListener("input", function (event) {
+            if (upass.validity.valueMissing) {
+                upass.setCustomValidity("Please fill out this field");
+            } else {
+                upass.setCustomValidity("");
+                }
+            });
+
+            rname.addEventListener("input", function (event) {
+            if (rname.validity.valueMissing) {
+                rname.setCustomValidity("Please fill out this field");
+            } else {
+                rname.setCustomValidity("");
+                }
+            });
+
+            rname.addEventListener("input", function (event) {
+            if (rname.validity.valueMissing) {
+                rname.setCustomValidity("Please fill out this field");
+            } 
+            if (email1.validity.typeMismatch) {
+                email1.setCustomValidity("Please enter a valid email address");
+            }else {
+                rname.setCustomValidity("");
+            }
+            });
+
+            rno.addEventListener("input", function (event) {
+            if (rno.validity.valueMissing) {
+                rno.setCustomValidity("Please fill out this field");
+            } else {
+                rno.setCustomValidity("");
+                }
+            });
+
+            p1.addEventListener("input", function (event) {
+            if (p1.validity.valueMissing) {
+                p1.setCustomValidity("Please fill out this field");
+            } else {
+                p1.setCustomValidity("");
+                }
+            });
+
+            p2.addEventListener("input", function (event) {
+            if (p2.validity.valueMissing) {
+                p2.setCustomValidity("Please fill out this field");
+            } else {
+                p2.setCustomValidity("");
+                }
             });
         </script>
     </body>
